@@ -14,7 +14,8 @@ import (
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Hello")
+		result := sum([...]int{2, 3, 5, 7, 9, 11})
+		fmt.Fprint(w, result)
 	})
 
 	r.HandleFunc("/fizzbuzz/{num}", func(w http.ResponseWriter, r *http.Request) {
@@ -74,6 +75,14 @@ func power(base, exponent int) int {
 	result := 1
 	for i := 1; i <= exponent; i++ {
 		result = result * base
+	}
+	return result
+}
+
+func sum(nums [6]int) int {
+	result := 0
+	for _, v := range nums {
+		result += v
 	}
 	return result
 }
