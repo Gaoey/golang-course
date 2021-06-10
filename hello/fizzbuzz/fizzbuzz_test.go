@@ -1,10 +1,7 @@
 package fizzbuzz
 
 import (
-	"fmt"
-	"math/rand"
 	"testing"
-	"time"
 )
 
 func Test_GivenOne_WantOne(t *testing.T) {
@@ -50,10 +47,23 @@ func Test_Fizzbuzz(t *testing.T) {
 	}
 }
 
-func TestRandomFizzBuzzTest(t *testing.T) {
-	src := rand.NewSource(time.Now().Unix())
-	r := rand.New(src)
-	s := RandomFizzBuzz(r)
+type stubIntn struct {
+	fake int
+}
 
-	fmt.Println(s)
+func (f stubIntn) Intn(a int) int {
+	return f.fake
+}
+
+func TestRandomFizzBuzzTest(t *testing.T) {
+	given := 2
+	want := "FizzFizzFizzFizz"
+
+	fakeIntn := stubIntn{given}
+
+	get := RandomFizzBuzz(fakeIntn)
+
+	if want != get {
+		t.Errorf("given %d want %q but get %q\n", given, want, get)
+	}
 }
