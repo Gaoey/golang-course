@@ -16,7 +16,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// result := sum(primes(100))
-		result2 := mapAbs([]float64{-1, -2, -3})
+		result2 := mapAbs([...]float64{-1, -2, -3, -4, -5, -6})
 		fmt.Fprint(w, result2)
 	})
 
@@ -92,10 +92,10 @@ func sum(nums []int) int {
 	return result
 }
 
-func mapAbs(nums []float64) []float64 {
-	var arr []float64
-	for _, v := range nums {
-		arr = append(arr, math.Abs(v))
+func mapAbs(nums [6]float64) [6]float64 {
+	var arr [6]float64
+	for i, v := range nums {
+		arr[i] = math.Abs(v)
 	}
 
 	return arr
