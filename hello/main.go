@@ -10,12 +10,14 @@ func main() {
 	println("result: ", result)
 	println(multiple(1, 2))
 
-	v, err := isEven("aa")
-	if err != nil {
-		fmt.Printf("err %s", err.Error())
-	}
+	// v, err := isEven("aa")
+	// if err != nil {
+	// 	fmt.Printf("err %s", err.Error())
+	// }
 
-	fmt.Printf("isEven result: %v", v)
+	// fmt.Printf("isEven result: %v", v)
+	// primes(100)
+	println(power(2, 3))
 
 }
 
@@ -34,4 +36,26 @@ func isEven(a string) (bool, error) {
 	}
 
 	return b%2 == 0, nil
+}
+
+func primes(a int) {
+	for i := 1; i <= a; i++ {
+		count := 0
+		for j := 1; j <= i; j++ {
+			if i%j == 0 {
+				count++
+			}
+		}
+		if count == 2 {
+			fmt.Println(i)
+		}
+	}
+}
+
+func power(base, exponent int) int {
+	result := 1
+	for i := 1; i <= exponent; i++ {
+		result = result * base
+	}
+	return result
 }
