@@ -1,6 +1,11 @@
 package fizzbuzz
 
-import "testing"
+import (
+	"fmt"
+	"math/rand"
+	"testing"
+	"time"
+)
 
 func Test_GivenOne_WantOne(t *testing.T) {
 	given := 1
@@ -43,4 +48,12 @@ func Test_Fizzbuzz(t *testing.T) {
 			t.Errorf("given %d want %q but get %q\n", v.given, v.want, result)
 		}
 	}
+}
+
+func TestRandomFizzBuzzTest(t *testing.T) {
+	src := rand.NewSource(time.Now().Unix())
+	r := rand.New(src)
+	s := RandomFizzBuzz(r)
+
+	fmt.Println(s)
 }

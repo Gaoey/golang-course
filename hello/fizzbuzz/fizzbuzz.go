@@ -1,6 +1,9 @@
 package fizzbuzz
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 func Say(n int) string {
 	return "1"
@@ -20,4 +23,8 @@ func FizzBuzz(n int) string {
 	}
 
 	return fmt.Sprintf("%d", n)
+}
+
+func RandomFizzBuzz(r *rand.Rand) string {
+	return fmt.Sprintf("%s%s%s%s", FizzBuzz(r.Intn(8)+1), FizzBuzz(r.Intn(8)+1), FizzBuzz(r.Intn(8)+1), FizzBuzz(r.Intn(8)+1))
 }
