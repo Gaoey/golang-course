@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"math"
 	"net/http"
 	"strconv"
 	"time"
@@ -14,8 +15,9 @@ import (
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		result := sum([...]int{2, 3, 5, 7, 9, 11})
-		fmt.Fprint(w, result)
+		// result := sum(primes(100))
+		result2 := mapAbs([]float64{-1, -2, -3})
+		fmt.Fprint(w, result2)
 	})
 
 	r.HandleFunc("/fizzbuzz/{num}", func(w http.ResponseWriter, r *http.Request) {
@@ -57,7 +59,8 @@ func isEven(a string) (bool, error) {
 	return b%2 == 0, nil
 }
 
-func primes(a int) {
+func primes(a int) []int {
+	var list []int
 	for i := 1; i <= a; i++ {
 		count := 0
 		for j := 1; j <= i; j++ {
@@ -66,9 +69,11 @@ func primes(a int) {
 			}
 		}
 		if count == 2 {
-			fmt.Print(i, ' ')
+			list = append(list, i)
 		}
 	}
+
+	return list
 }
 
 func power(base, exponent int) int {
@@ -79,10 +84,19 @@ func power(base, exponent int) int {
 	return result
 }
 
-func sum(nums [6]int) int {
+func sum(nums []int) int {
 	result := 0
 	for _, v := range nums {
 		result += v
 	}
 	return result
+}
+
+func mapAbs(nums []float64) []float64 {
+	var arr []float64
+	for _, v := range nums {
+		arr = append(arr, math.Abs(v))
+	}
+
+	return arr
 }
