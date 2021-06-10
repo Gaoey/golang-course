@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"time"
 
+	"git.wndv.co/workshop/letsgo/hello/fizzbuzz"
 	"github.com/gorilla/mux"
 )
 
@@ -14,6 +15,17 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "Hello")
+	})
+
+	r.HandleFunc("/fizzbuzz/{num}", func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		num := vars["num"]
+		n, err := strconv.Atoi(num)
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Fprint(w, fizzbuzz.FizzBuzz(n))
 	})
 
 	srv := &http.Server{
