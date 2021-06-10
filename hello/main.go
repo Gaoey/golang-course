@@ -16,8 +16,12 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// result := sum(primes(100))
-		result2 := mapAbs([...]float64{-1, -2, -3, -4, -5, -6})
-		fmt.Fprint(w, result2)
+		// result2 := mapAbs([...]float64{-1, -2, -3, -4, -5, -6})
+		// result3 := mapAbs([...]float64{-7, -8, -9, -14, -15, -16})
+		// fmt.Fprint(w, "result2: ", result2, ", result3: ", result3)
+
+		arr := couple("avsdfsdfs")
+		fmt.Fprint(w, "result: ", arr)
 	})
 
 	r.HandleFunc("/fizzbuzz/{num}", func(w http.ResponseWriter, r *http.Request) {
@@ -99,4 +103,25 @@ func mapAbs(nums [6]float64) [6]float64 {
 	}
 
 	return arr
+}
+
+func couple(input string) []string {
+	tempInput := input
+	return coupleLoop(tempInput, []string{})
+}
+
+func coupleLoop(input string, result []string) []string {
+	if input == "" {
+		return result
+	}
+
+	if len(input) == 1 {
+		result = append(result, input)
+		input = ""
+	} else {
+		result = append(result, input[0:2])
+		input = input[2:]
+	}
+
+	return coupleLoop(input, result)
 }
