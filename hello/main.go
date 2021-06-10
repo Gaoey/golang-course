@@ -2,26 +2,29 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
 	"strconv"
+	"time"
 
-	"git.wndv.co/workshop/letsgo/hello/gaoey"
+	"github.com/gorilla/mux"
 )
 
 func main() {
-	// result := squareArea(2)
-	// println("result: ", result)
-	// println(multiple(1, 2))
+	r := mux.NewRouter()
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Hello")
+	})
 
-	// v, err := isEven("aa")
-	// if err != nil {
-	// 	fmt.Printf("err %s", err.Error())
-	// }
+	srv := &http.Server{
+		Handler: r,
+		Addr:    "127.0.0.1:8080",
+		// Good practice: enforce timeouts for servers you create!
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
 
-	// fmt.Printf("isEven result: %v", v)
-	// primes(100)
-	// println(power(2, 3))
-	fmt.Printf("%s", gaoey.Name)
-
+	log.Fatal(srv.ListenAndServe())
 }
 
 func squareArea(a int) int {
@@ -50,7 +53,7 @@ func primes(a int) {
 			}
 		}
 		if count == 2 {
-			fmt.Printf(i, ' ')
+			fmt.Print(i, ' ')
 		}
 	}
 }
