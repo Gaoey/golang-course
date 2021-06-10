@@ -19,8 +19,7 @@ func main() {
 		// result2 := mapAbs([...]float64{-1, -2, -3, -4, -5, -6})
 		// result3 := mapAbs([...]float64{-7, -8, -9, -14, -15, -16})
 		// fmt.Fprint(w, "result2: ", result2, ", result3: ", result3)
-
-		arr := couple("avsdfsdfs")
+		arr := couple("avsdfsdfsd")
 		fmt.Fprint(w, "result: ", arr)
 	})
 
