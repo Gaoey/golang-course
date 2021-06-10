@@ -3,12 +3,14 @@ package main
 import (
 	"fmt"
 	"strconv"
+
+	"git.wndv.co/workshop/letsgo/hello/gaoey"
 )
 
 func main() {
-	result := squareArea(2)
-	println("result: ", result)
-	println(multiple(1, 2))
+	// result := squareArea(2)
+	// println("result: ", result)
+	// println(multiple(1, 2))
 
 	// v, err := isEven("aa")
 	// if err != nil {
@@ -17,7 +19,8 @@ func main() {
 
 	// fmt.Printf("isEven result: %v", v)
 	// primes(100)
-	println(power(2, 3))
+	// println(power(2, 3))
+	fmt.Printf("%s", gaoey.Name)
 
 }
 
@@ -47,7 +50,7 @@ func primes(a int) {
 			}
 		}
 		if count == 2 {
-			fmt.Println(i)
+			fmt.Printf(i, ' ')
 		}
 	}
 }

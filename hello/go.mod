@@ -1,3 +1,3 @@
-module git.wndv.co/workshop/letsgo
+module git.wndv.co/workshop/letsgo/hello
 
 go 1.16
