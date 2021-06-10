@@ -12,13 +12,13 @@ func Test_GivenOne_WantOne(t *testing.T) {
 	}
 }
 
-type Testcase struct {
+type TestCase struct {
 	given int
 	want  string
 }
 
 func Test_Fizzbuzz(t *testing.T) {
-	testcases := []Testcase{
+	testcases := []TestCase{
 		{
 			given: 1,
 			want:  "1",
