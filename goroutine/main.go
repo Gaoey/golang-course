@@ -2,27 +2,29 @@ package main
 
 import (
 	"fmt"
-	"sync"
 	"time"
 )
-
-var wg = sync.WaitGroup{}
 
 func main() {
 	total := 10
 
-	wg.Add(total)
+	channelSignal := make(chan struct{})
+
 	start := time.Now()
 	for i := 0; i < total; i++ {
-		go printout(i)
+		go printout(i, channelSignal)
 	}
 
-	wg.Wait()
+	for i := 0; i < total; i++ {
+		<-channelSignal
+	}
+
 	fmt.Println(time.Since(start))
 }
 
-func printout(i int) {
-	defer wg.Done()
+// มี signal ไปบอกข้างนอกว่าเสร็จแล้ว
+func printout(i int, channelSignal chan struct{}) {
 	time.Sleep(500 * time.Millisecond)
 	fmt.Println(i)
+	channelSignal <- struct{}{}
 }
